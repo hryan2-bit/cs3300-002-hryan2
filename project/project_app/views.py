@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from .models import *
 from django.views import generic
-from .forms import AppUserForm, KillerForm
+from .forms import AppUserForm
 from django.contrib import messages   
 from django.urls import reverse
 from typing import Any
@@ -28,17 +28,17 @@ def createUser(request):
 def updateKillerList(request, user_id):
   user = get_object_or_404(AppUser, pk=user_id)
   if request.method == 'POST':
-    form = KillerForm(request.POST, instance=user)
+    form = AppUserForm(request.POST, instance=user)
     if form.is_valid():
       form.save()
-      return redirect('project-detail', pk=user_id)
+      return redirect('user-detail', pk=user_id)
   else:
-    form = KillerForm(instance=user)
+    form = AppUserForm(instance=user)
     context={
      'form': form,
      'user': user,
     }
-  return render(request, 'project_app/killer_update.html', context)
+  return render(request, 'project_app/update_killer.html', context)
 
 def deleteUser(request, user_id):
    user = get_object_or_404(AppUser, pk=user_id)

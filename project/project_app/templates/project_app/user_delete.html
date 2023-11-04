@@ -1,10 +1,9 @@
 {% extends 'project_app/base_template.html' %}
 {% block content %}
+<p>Are you sure you want to delete the user: {{ user.name }}</p>
 <form action="" method="POST">
-    <p>Are you sure you want to delete {{appuser.name}}</p>
-
 {% csrf_token %}
-<a href="{% url 'user-detail' pk=appuser.id %}" class="btn btn-primary" role="button">Cancel</a>
+<a href="{% url 'index' %}" class="btn btn-primary" role="button">Cancel</a>
 <input type="submit" name="Submit">
 </form>
 

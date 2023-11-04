@@ -16,7 +16,7 @@ class Killer(models.Model):
 class AppUser(models.Model):
     #Required
     name = models.CharField(max_length=200)
-    #Required
+    #Not required
     killer = models.ManyToManyField(Killer, related_name='users')
 
     def __str__(self):

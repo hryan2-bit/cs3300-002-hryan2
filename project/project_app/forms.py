@@ -12,8 +12,3 @@ class AppUserForm(ModelForm):
         widget=CheckboxSelectMultiple, 
         required=False,
     )
-
-class KillerForm(ModelForm):
-    class Meta:
-        model = Killer
-        fields = ('title',)

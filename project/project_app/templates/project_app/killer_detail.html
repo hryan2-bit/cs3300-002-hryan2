@@ -8,10 +8,9 @@
     }
   </style>
 
-<h1>{{ killer.title }}:</h1>
+<h1>{{ killer.title }}</h1>
 
-<p><strong>Killer:</strong> {{ killer.is_active }}</p>
-<p><strong>About:</strong> {{ killer.about }}</p>
-{% endif %}
+<p><strong>About:</strong> {{ killer.description }}</p>
+<a href="{% url 'killers' %}" class="btn btn-primary" role="button">Back</a>
 
 {% endblock %}
