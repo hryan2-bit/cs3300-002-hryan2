@@ -1,0 +1,17 @@
+{% extends 'project_app/base_template.html' %}
+
+{% block content %}
+<style>
+    /* Defining a mouseover effect so the user can see the card they are interacting with easier*/
+    .hover-card:hover {
+      background-color: #f5f5f5;
+    }
+  </style>
+
+<h1>{{ killer.title }}:</h1>
+
+<p><strong>Killer:</strong> {{ killer.is_active }}</p>
+<p><strong>About:</strong> {{ killer.about }}</p>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,16 @@
+<!-- inherit from base.html -->
+{% extends "project_app/base_template.html" %}
+
+<!-- Replace block content in base_template.html -->
+{% block content %}
+<h1>Dead By Daylight Randomizer</h1>
+
+<h2>List of Users</h2>
+<ul class="list-group">
+{% for i in users %}
+<li class="list-group-item">User: {{i.name}}
+<a class="btn btn-primary" href="{{ i.get_absolute_url }}" role="button">View</a>
+</li>
+{% endfor %}
+</ul>
+{% endblock %}
