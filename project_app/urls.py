@@ -12,4 +12,7 @@ path('', views.index, name='index'),
 
 path('killers/', views.KillerListView.as_view(), name='killers'),
 path('users/<int:pk>', views.UserDetailView.as_view(), name='user-detail'),
+path('users/create', views.createUser, name='create_user'),
+path('users/<int:pk>/killers/update', views.updateKillerList, name='update_killers'),
+path('users/<int:pk>/delete', views.deleteUser, name='delete_user'),
 ]
