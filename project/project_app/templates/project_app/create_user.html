@@ -3,7 +3,12 @@
 
 <!-- Replace block content in base_template.html -->
 {% block content %}
-<h1>Dead By Daylight Randomizer Killer Picks</h1>
+<h1>Create User</h1>
+<form action="" method="POST">
 
-<h2>List of Killers Chosen</h2>
+{% csrf_token %}
+
+{{ form.as_p }}
+<input type="submit" name="Submit">
+</form>
 {% endblock %}

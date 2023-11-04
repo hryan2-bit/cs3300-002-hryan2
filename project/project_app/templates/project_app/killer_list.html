@@ -1,0 +1,16 @@
+{% extends 'project_app/base_template.html' %}
+
+{% block content %}
+  <h1>Killer List:</h1>
+  {% if killer_list %}
+    <ul>
+      {% for project in killer_list %}
+        <li>
+          <a href="{{ killer.get_absolute_url }}">{{ killer.title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>There are no killers registered.</p>
+  {% endif %}
+{% endblock %}

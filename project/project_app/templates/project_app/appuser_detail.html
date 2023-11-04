@@ -1,0 +1,18 @@
+<!-- inherit from base.html -->
+{% extends "project_app/base_template.html" %}
+
+
+{% block content %}
+
+<h1> User: {{appuser.name}} </h1>
+<h3>List of Killers Chosen:</h3>
+<ul class="list-group">
+    {% for i in user_active_killers %}
+        <li class="list-group-item">Killer:
+        <p><strong>{{ i.killer.title }}
+        <a class="btn btn-primary" href="{{ i.killer.get_absolute_url }}" role="button">View</a>
+        </li>
+    {% endfor %}
+</ul>
+<br>
+{% endblock %}
