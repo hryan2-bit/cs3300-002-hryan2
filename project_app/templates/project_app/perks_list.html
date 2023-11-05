@@ -1,0 +1,16 @@
+{% extends 'project_app/base_template.html' %}
+
+{% block content %}
+  <h1>Perk List:</h1>
+  {% if perks_list %}
+    <ul>
+      {% for perk in perks_list %}
+        <li>
+          <a href="{% url 'perk-detail' perk.id %}">{{ perk.title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>There are no killer perks registered.</p>
+  {% endif %}
+{% endblock %}

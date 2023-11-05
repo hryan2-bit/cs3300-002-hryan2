@@ -5,12 +5,22 @@
 {% block content %}
 
 <h1> User: {{appuser.name}} </h1>
+<a href="{% url 'update_killers' appuser.id %}" class="btn btn-primary" role="button">Update User</a>
+
 <h3>List of Killers Chosen:</h3>
 <ul class="list-group">
-    {% for i in user_active_killers %}
-        <li class="list-group-item">Killer:
-        <p><strong>{{ i.killer.title }}
-        <a class="btn btn-primary" href="{{ i.killer.get_absolute_url }}" role="button">View</a>
+    {% for i in appuser.killer.all %}
+        <li class="list-group-item">
+        <p><strong>{{ i.title }}</strong>
+        </li>
+    {% endfor %}
+</ul>
+<br>
+<h3>List of Perks Chosen:</h3>
+<ul class="list-group">
+    {% for i in appuser.perk.all %}
+        <li class="list-group-item">
+        <p><strong>{{ i.title }}</strong>
         </li>
     {% endfor %}
 </ul>

@@ -4,9 +4,9 @@
   <h1>Killer List:</h1>
   {% if killer_list %}
     <ul>
-      {% for project in killer_list %}
+      {% for killer in killer_list %}
         <li>
-          <a href="{{ killer.get_absolute_url }}">{{ killer.title }}</a>
+          <a href="{% url 'killer-detail' killer.id %}">{{ killer.title }}</a>
         </li>
       {% endfor %}
     </ul>
