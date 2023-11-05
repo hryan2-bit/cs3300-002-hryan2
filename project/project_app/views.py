@@ -14,6 +14,7 @@ def index(request):
    return render(request, 'project_app/index.html', {'users':users})
 
 def createUser(request):
+   # if the form is submitted
    if request.method == 'POST':
       form = AppUserForm(request.POST.copy())
       if form.is_valid():
@@ -27,6 +28,7 @@ def createUser(request):
 
 def updateKillerList(request, user_id):
   user = get_object_or_404(AppUser, pk=user_id)
+  # if the form is submitted
   if request.method == 'POST':
     form = AppUserForm(request.POST, instance=user)
     if form.is_valid():
@@ -42,6 +44,7 @@ def updateKillerList(request, user_id):
 
 def deleteUser(request, user_id):
    user = get_object_or_404(AppUser, pk=user_id)
+   # if the form is submitted
    if request.method == 'POST':
       user.delete()
       # Redirect back to the index
