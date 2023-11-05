@@ -55,7 +55,13 @@ class KillerListView(generic.ListView):
    model = Killer
 
 class KillerDetailView(generic.DetailView):
-    model = Killer
+   model = Killer
+
+class PerkListView(generic.ListView):
+   model = Perks
+
+class PerkDetailView(generic.DetailView):
+   model = Perks
 
 class UserListView(generic.ListView):
    model = AppUser
@@ -68,5 +74,7 @@ class UserDetailView(generic.DetailView):
       user = self.get_object()
       killers_list = user.killer.all()  # access the related killers through the 'killers' many-to-many field
       context['k_list'] = killers_list
+      perks_list = user.perk.all()
+      context['p_list'] = perks_list
       return context
    

@@ -8,9 +8,9 @@
     }
   </style>
 
-<h1>{{ killer.title }}</h1>
-<img src="{{ killer.photo.url }}" alt="{{killer.title}}">
-<p><strong>About:</strong> {{ killer.description }}</p>
-<a href="{% url 'killers' %}" class="btn btn-primary" role="button">Back</a>
+<h1>{{ perks.title }}</h1>
+<img src="{{ perks.photo.url }}" alt="{{ perks.title }}">
+<p><strong>About:</strong> {{ perks.description }}</p>
+<a href="{% url 'perks' %}" class="btn btn-primary" role="button">Back</a>
 
 {% endblock %}
