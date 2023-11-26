@@ -1,17 +1,38 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
-from .models import *
 from django.views import generic
-from .forms import AppUserForm
 from django.contrib import messages   
 from django.urls import reverse
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import Group
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+from .models import *
+from .forms import AppUserForm, CreateUserForm
 from typing import Any
+from .decorators import allowed_users
+
 
 # Create your views here.
 def index(request):
    users = AppUser.objects.all()
    print("user query set", users)
    return render(request, 'project_app/index.html', {'users':users})
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['student_role'])
+def userPage(request):
+   appuser = request.user.appuser
+   form = AppUserForm(instance=appuser)
+   print('user', appuser)
+   if request.method == 'POST':
+      form = AppUserForm(request.POST, request.FILES, instance=appuser)
+      if form.is_valid():
+         form.save()
+   context = {'form': form}
+   return render(request, 'project_app/user.html', context)
 
 def createUser(request):
    # if the form is submitted
@@ -53,6 +74,22 @@ def deleteUser(request, user_id):
    context = {'user': user}
    return render(request, 'project_app/user_delete.html', context)
 
+def registerPage(request):
+   form = CreateUserForm()
+   if request.method == 'POST':
+      form = CreateUserForm(request.POST)
+      if form.is_valid():
+         user = form.save()
+         username = form.cleaned_data.get('username')
+         group = Group.objects.get(name='user__role')
+         user.groups.add(group)
+
+         messages.success(request, 'Account was created for ' + username)
+         return redirect('login')
+   context = {'form': form}
+   return render(request, 'registration/register.html', context)
+
+
 # generic list and detail views
 class KillerListView(generic.ListView):
    model = Killer
@@ -66,10 +103,10 @@ class PerkListView(generic.ListView):
 class PerkDetailView(generic.DetailView):
    model = Perks
 
-class UserListView(generic.ListView):
+class UserListView(LoginRequiredMixin, generic.ListView):
    model = AppUser
 
-class UserDetailView(generic.DetailView):
+class UserDetailView(LoginRequiredMixin, generic.DetailView):
    model = AppUser
 
    def get_context_data(self, **kwargs):

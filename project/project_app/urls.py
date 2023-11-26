@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from . import views
@@ -12,6 +12,12 @@ urlpatterns = [
 # example in html <a href="{% url 'index' %}">Home</a>.
 path('', views.index, name='index'),
 
+#user auth paths
+path('user/', views.userPage, name='user_page'),
+path('accounts/', include('django.contrib.auth.urls')),
+path('accounts/register/', views.registerPage, name = 'register'),
+
+#Sprint 01 paths
 path('killers/', views.KillerListView.as_view(), name='killers'),
 path('killers/<int:pk>', views.KillerDetailView.as_view(), name='killer-detail'),
 path('perks/', views.PerkListView.as_view(), name='perks'),
