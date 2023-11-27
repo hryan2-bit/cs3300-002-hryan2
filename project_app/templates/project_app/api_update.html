@@ -1,0 +1,44 @@
+<!-- inherit from base.html -->
+{% extends "project_app/base_template.html" %}
+{% block content %}
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        white-space: wrap;
+
+        text-overflow: ellipsis; /* Adds ellipsis for overflow text */
+    }
+    .title-column {
+        max-width: 200px; 
+        word-wrap: break-word; 
+        white-space: normal; 
+    }
+</style>
+
+<body>
+    <h2>Dead by Daylight Updates</h2>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Contents</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for update in updates.appnews.newsitems %}
+                <tr>
+                    <td><strong>{{ update.title }}</strong></td>
+                    <td>{{ update.contents | safe }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+{% endblock %}

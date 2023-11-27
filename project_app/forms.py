@@ -1,19 +1,15 @@
-from django.forms import ModelForm, ModelMultipleChoiceField, CheckboxSelectMultiple
-from .models import Killer, AppUser, Perks
-
+from django.forms import ModelForm
+from .models import AppUser
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 #create class for project form
 class AppUserForm(ModelForm):
     class Meta:
         model = AppUser
         fields = ('name', 'killer', 'perk')
-    killer = ModelMultipleChoiceField(
-        queryset=Killer.objects.all(), 
-        widget=CheckboxSelectMultiple, 
-        required=True,
-    )
-    perk = ModelMultipleChoiceField(
-        queryset=Perks.objects.all(), 
-        widget=CheckboxSelectMultiple, 
-        required=True,
-    )
+
+class CreateUserForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']

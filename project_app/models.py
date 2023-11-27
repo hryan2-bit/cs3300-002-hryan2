@@ -8,7 +8,6 @@ fs = FileSystemStorage(location="/media")
 class Killer(models.Model):
     #Required
     title = models.CharField(max_length=200, blank=False)
-    #Required
     description = models.TextField(blank=False)
     photo = models.ImageField(upload_to="media/killers/", blank=False)
 
@@ -20,7 +19,6 @@ class Killer(models.Model):
 class Perks(models.Model):
     #Required
     title = models.CharField(max_length=200, blank=False)
-    #Required
     description = models.TextField(blank=False)
     photo = models.ImageField(upload_to="media/perks/", blank=False)
 

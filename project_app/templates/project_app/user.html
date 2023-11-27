@@ -1,0 +1,17 @@
+<!-- inherit from base.html -->
+{% extends 'project_app/base_template.html' %}
+
+<!-- Replace block content in base_template.html -->
+{% block content %}
+<h2>Randomizer User Profile</h2>
+<p>Welcome, {{user}}</p>
+    <h5>How to make a choice: When choosing a killer or perk that you have use "control+click" to make the selection.</h5>
+
+<form action="" method="POST">
+
+{% csrf_token %}
+
+{{ form.as_p }}
+<input type="submit" name="Submit">
+</form>
+{% endblock %}
