@@ -14,8 +14,18 @@ from .forms import AppUserForm, CreateUserForm
 from typing import Any
 from .decorators import allowed_users
 
+import requests
 
 # Create your views here.
+
+# API Exploration
+def apiExploration(request):
+   response = requests.get('http://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid=381210') #gets the new updates for Dead By Daylight
+   updates = response.json()
+   #print(updates)
+   return render(request, 'project_app/api_update.html', {'updates': updates})
+
+# FULL PROJECT DO NOT TOUCH BELOW THIS
 def index(request):
    users = AppUser.objects.all()
    print("user query set", users)

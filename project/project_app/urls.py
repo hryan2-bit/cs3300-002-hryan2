@@ -12,6 +12,10 @@ urlpatterns = [
 # example in html <a href="{% url 'index' %}">Home</a>.
 path('', views.index, name='index'),
 
+#API Exploration
+path('updates/', views.apiExploration, name='updates'),
+
+
 #user auth paths
 path('user/', views.userPage, name='user_page'),
 path('accounts/', include('django.contrib.auth.urls')),
