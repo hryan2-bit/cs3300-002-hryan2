@@ -1,6 +1,6 @@
+run-name: CI Pipeline
 jobs:
   build:
-    # Use a specific Python version
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
