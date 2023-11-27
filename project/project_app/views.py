@@ -14,15 +14,20 @@ from .forms import AppUserForm, CreateUserForm
 from typing import Any
 from .decorators import allowed_users
 
-import requests
+
 
 # Create your views here.
 
 # API Exploration
+import requests
+
 def apiExploration(request):
-   response = requests.get('http://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid=381210') #gets the new updates for Dead By Daylight
+   #gets the new updates for Dead By Daylight
+   response = requests.get('http://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid=381210') 
+   #creates a json file of the API's response
    updates = response.json()
-   #print(updates)
+   print(updates) #prints response to the console
+   #renders the response on the webpage and passes the response to HTML
    return render(request, 'project_app/api_update.html', {'updates': updates})
 
 # FULL PROJECT DO NOT TOUCH BELOW THIS
